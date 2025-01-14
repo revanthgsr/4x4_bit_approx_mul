@@ -1,7 +1,7 @@
 # 4x4 Bit Approximate Multiplier
 
 This repository presents an approximation technique for a 4x4 bit multiplier based on the methods described in the paper [Design and Analysis of Approximate Multipliers](https://www.researchgate.net/publication/368293010). The final implementation satisfies the following criteria:
-- **Mean relative error**: Less than 5%
+- **Mean relative error**: Less than 10%
 - **Number of LUTs**: Less than 12
 
 ## Overview
@@ -16,8 +16,7 @@ The exact half adder is approximated as follows:
   - Sum = A $+$ B
   - Carry = A $\cdot$ B
 
-A schematic diagram of the approximated half adder will be added below:  
-*Placeholder for schematic diagram of approximated half adder*
+![ha](https://github.com/user-attachments/assets/c5b4fb62-f743-48f6-a240-dcc7a9935ff2)
 
 #### Truth Table Comparison
 
@@ -60,8 +59,7 @@ The exact full adder is approximated as follows:
   - Carry = A 
   - C<sub>in</sub> is not used.
 
-A schematic diagram of the approximated full adder will be added below:  
-*Placeholder for schematic diagram of approximated full adder*
+![fa](https://github.com/user-attachments/assets/32cd7a57-b511-4714-9b86-7a07927bb231)
 
 #### Truth Table Comparison
 
@@ -143,8 +141,7 @@ A **compressor** is used to simplify the partial product tree. It takes 4 input 
    - Carry-in (C<sub>in</sub>)  
    and generates the final Sum and Carry bits.
 
-A schematic diagram of the exact compressor will be added here:  
-*Placeholder for schematic diagram of exact compressor*
+![exact_compressor](https://github.com/user-attachments/assets/c901f28d-e662-4ff3-ab1b-0521130129ee)
 
 #### Approximated Compressor
 The approximated compressor is defined as:
@@ -152,8 +149,7 @@ The approximated compressor is defined as:
 - Sum = (A $\oplus$ B) $+$ (C $\oplus$ D)
 - Carry-out (C<sub>out</sub>) = (A $\cdot$ B) $+$ (C $\cdot$ D)
 
-A schematic diagram of the approximated compressor will be added here:  
-*Placeholder for schematic diagram of approximated compressor*
+![compressor](https://github.com/user-attachments/assets/6d6a0eb8-3640-4ff0-b89c-5ea95ca5d910)
 
 #### Truth Table Comparison
 
@@ -283,18 +279,30 @@ A schematic diagram of the approximated compressor will be added here:
 
 20 out of 32 cases have errors: 16 in Sum, 8 in Carry and 6 in C<sub>out</sub>
 
+1 imagae will be added here for 1st stage of reduction
+*Placeholder for 1st stage of reduction*
+
 ### Final Summation
 After the partial product reduction, the remaining Sum and Carry-out bits are processed using half adders and full adders to generate the final output.
+
+1 image will be added here for final summation
+*Placeholder for final summation stage*
 
 ---
 
 ## Results and Analysis
 The following images demonstrate that the design meets the specified criteria for:
-1. **Error**: Mean relative error less than 5%
-2. **Power Utilization**: Efficient power usage
-3. **LUT Utilization**: Number of LUTs less than 12
+1. **Error**: Mean relative error = 8.23% (less than 10%)
 
-*Placeholder for images showing error, power, and utilization analysis*
+![mean_relative_error = 8.23%](https://github.com/user-attachments/assets/128f9619-f260-4419-971e-fea3c35bb096)
+
+2. **Power Utilization**: 40 mW for logic (Efficient power usage)
+
+![power = 40mW for logic](https://github.com/user-attachments/assets/609c2229-5d5d-44b9-803c-dc24b9466489)
+   
+3. **LUT Utilization**: Number of LUTs = 9 (less than 12)
+
+![utilisation = 9 LUTs](https://github.com/user-attachments/assets/4ea8b0ef-42a2-4a65-9fa7-7551ee07e305)
 
 ---
 
