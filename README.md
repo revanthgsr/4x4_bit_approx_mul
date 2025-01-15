@@ -11,10 +11,10 @@ This repository presents an approximation technique for a 4x4 bit multiplier bas
 The exact half adder is approximated as follows:
 - **Exact Implementation**:
   - Sum = A $\oplus$ B 
-  - Carry = A $\cdot$ B
+  - C<sub>out</sub> = A $\cdot$ B
 - **Approximated Implementation**:
   - Sum = A $+$ B
-  - Carry = A $\cdot$ B
+  - C<sub>out</sub> = A $\cdot$ B
 
 ![ha](https://github.com/user-attachments/assets/c5b4fb62-f743-48f6-a240-dcc7a9935ff2)
 
@@ -30,9 +30,9 @@ The exact half adder is approximated as follows:
     </tr>
     <tr>
       <th>Sum</th>
-      <th>Carry</th>
+      <th>C<sub>out</sub></th>
       <th>Sum</th>
-      <th>Carry</th>
+      <th>C<sub>out</sub></th>
     </tr>
   </thead>
   <tbody>
@@ -53,10 +53,10 @@ The exact half adder is approximated as follows:
 The exact full adder is approximated as follows:
 - **Exact Implementation**:
   - Sum = A $\oplus$ B $\oplus$ C<sub>in</sub>
-  - Carry = (A $\cdot$ B) $+$ (B $\cdot$ C<sub>in</sub>) $+$ (C<sub>in</sub> $\cdot$ A)
+  - C<sub>out</sub> = (A $\cdot$ B) $+$ (B $\cdot$ C<sub>in</sub>) $+$ (C<sub>in</sub> $\cdot$ A)
 - **Approximated Implementation**:
   - Sum = B  
-  - Carry = A 
+  - C<sub>out</sub> = A 
   - C<sub>in</sub> is not used.
 
 ![fa](https://github.com/user-attachments/assets/32cd7a57-b511-4714-9b86-7a07927bb231)
@@ -74,9 +74,9 @@ The exact full adder is approximated as follows:
     </tr>
     <tr>
       <th>Sum</th>
-      <th>Carry</th>
+      <th>C<sub>out</sub></th>
       <th>Sum</th>
-      <th>Carry</th>
+      <th>C<sub>out</sub></th>
     </tr>
   </thead>
   <tbody>
@@ -119,7 +119,7 @@ The exact full adder is approximated as follows:
   </tbody>
 </table>
 
-4 out of 8 cases have errors: 4 in Sum and 2 in Carry
+4 out of 8 cases have errors: 4 in Sum and 2 in C<sub>out</sub>.
 
 ### Partial Product Transformation
 The approximation involves the transformation of partial product terms a<sub>m,n</sub> and a<sub>n,m</sub> ( a<sub>m,n</sub> = a[m] $\times$ b[n] ) into propagate and generate terms:
@@ -127,8 +127,7 @@ The approximation involves the transformation of partial product terms a<sub>m,n
 - g<sub>m,n</sub> = a<sub>m,n</sub> $\cdot$ a<sub>n,m</sub>
 - a<sub>m,m</sub> terms are retained.
 
-Two images will be added to show the transformation process:  
-*Placeholder for partial product transformation images*
+![partial_product_transformation](https://github.com/user-attachments/assets/0e8f5fe1-f7b0-4bb3-8d11-054a2497b229)
 
 ### Partial Product Reduction with Compressors
 A **compressor** is used to simplify the partial product tree. It takes 4 input bits and a carry-in (C<sub>in</sub>) bit and generates Sum, Carry, and Carry-out (C<sub>out</sub>) bits. The exact compressor uses two full adders:
@@ -277,30 +276,29 @@ The approximated compressor is defined as:
   </tbody>
 </table>
 
-20 out of 32 cases have errors: 16 in Sum, 8 in Carry and 6 in C<sub>out</sub>
+20 out of 32 cases have errors: 16 in Sum, 8 in Carry and 6 in C<sub>out</sub>.
 
-1 imagae will be added here for 1st stage of reduction
-*Placeholder for 1st stage of reduction*
+![partial_product_reduction](https://github.com/user-attachments/assets/47b6613e-6410-4900-9094-26dedef507ee)<br>
+*Half Adder: ![grey](https://placehold.co/10x10/a5a5a5/a5a5a5.png) , Full Adder: ![blue](https://placehold.co/10x10/5b9bd5/5b9bd5.png) , Compressor: ![dark_blue](https://placehold.co/10x10/172c51/172c51.png) , C<sub>out</sub>: ![orange](https://placehold.co/10x10/ed7d31/ed7d31.png) & Carry: ![orange](https://placehold.co/10x10/ffc000/ffc000.png)*
+
+The C<sub>out</sub> for the last half adder is always 0.
 
 ### Final Summation
 After the partial product reduction, the remaining Sum and Carry-out bits are processed using half adders and full adders to generate the final output.
-
-1 image will be added here for final summation
-*Placeholder for final summation stage*
 
 ---
 
 ## Results and Analysis
 The following images demonstrate that the design meets the specified criteria for:
-1. **Error**: Mean relative error = 8.23% (less than 10%)
+1. **Error**: Mean relative error = `8.23%` (less than 10%)
 
 ![mean_relative_error = 8.23%](https://github.com/user-attachments/assets/128f9619-f260-4419-971e-fea3c35bb096)
 
-2. **Power Utilization**: 40 mW for logic (Efficient power usage)
+2. **Power Utilization**: `40 mW` for logic (Efficient power usage)
 
 ![power = 40mW for logic](https://github.com/user-attachments/assets/609c2229-5d5d-44b9-803c-dc24b9466489)
    
-3. **LUT Utilization**: Number of LUTs = 9 (less than 12)
+3. **LUT Utilization**: Number of LUTs = `9` (less than 12)
 
 ![utilisation = 9 LUTs](https://github.com/user-attachments/assets/4ea8b0ef-42a2-4a65-9fa7-7551ee07e305)
 
